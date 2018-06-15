@@ -7,7 +7,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ContainerTest extends TestCase{
 	
+	@SuppressWarnings("resource")
 	public void testContainer(){
-		ApplicationContext conext = new ClassPathXmlApplicationContext("service.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("service.xml");
+		PetStoreService service = context.getBean("petStore",PetStoreService.class);
+		service.say();
 	}
 }
