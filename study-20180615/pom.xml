@@ -20,6 +20,16 @@
     	<version>2.2.3</version>
     	<classifier>jdk15</classifier>
     </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-beans</artifactId>
+    	<version>4.2.4.RELEASE</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context</artifactId>
+    	<version>4.2.4.RELEASE</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>study-never-late</finalName>
