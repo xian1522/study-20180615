@@ -8,6 +8,8 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -63,12 +65,24 @@ public class MyBeanDefinitionReader {
 	 */
 	public void registerBeanDefinitions(Document doc) {
 		Element root = doc.getDocumentElement();
-		doRegisterBeanDefinitions(root);
+		
+		MyBeanDefinitionParserDelegate delegate = new MyBeanDefinitionParserDelegate();
+		parseBeanDefinitions(root,delegate);
 	}
 	
 	
-	public void doRegisterBeanDefinitions(Element root) {
-		
+	/**
+	 * 解析
+	 * @param root
+	 * @param delegate
+	 * 2018年6月19日下午8:12:42
+	 */
+	public void parseBeanDefinitions(Element root,MyBeanDefinitionParserDelegate delegate) {
+		NodeList nodeList = root.getChildNodes();
+		for(int i=0;i<nodeList.getLength();i++){
+			Node node = nodeList.item(i);
+			delegate.parseBeanDefinitionElement(node);
+		}
 	}
 
 	public MyApplicationContext getRegistry() {
