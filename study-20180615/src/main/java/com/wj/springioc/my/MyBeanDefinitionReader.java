@@ -81,7 +81,12 @@ public class MyBeanDefinitionReader {
 		NodeList nodeList = root.getChildNodes();
 		for(int i=0;i<nodeList.getLength();i++){
 			Node node = nodeList.item(i);
-			delegate.parseBeanDefinitionElement(node);
+			if(node instanceof Element){
+				Element el = (Element) node;
+				MyBeanDefinitionHolder bdHolder =  delegate.parseBeanDefinitionElement(el);
+				this.getRegistry().registBeanDefinition(bdHolder);
+			}
+			
 		}
 	}
 

@@ -1,6 +1,6 @@
 package com.wj.springioc.my;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 /**
  * Bean解析代理类
@@ -15,9 +15,14 @@ public class MyBeanDefinitionParserDelegate {
 	 * @return
 	 * 2018年6月19日下午8:28:03
 	 */
-	public MyBeanDefinitionHolder parseBeanDefinitionElement(Node node) {
+	public MyBeanDefinitionHolder parseBeanDefinitionElement(Element ele) {
+		String beanName = ele.getAttribute("id");
+		String beanClass = ele.getAttribute("class");
 		
-		return null;
+		MyBeanDefinition bd = new MyBeanDefinition();
+		bd.setBeanClassName(beanClass);
+		
+		return new MyBeanDefinitionHolder(bd,beanName);
 	}
 
 }
