@@ -1,4 +1,7 @@
 package com.wj.springioc.my;
+
+import com.wj.springioc.my.beans.MyBeanDefinition;
+
 /**
  * BeanDefinition·â×°Àà
  * @author Administrator

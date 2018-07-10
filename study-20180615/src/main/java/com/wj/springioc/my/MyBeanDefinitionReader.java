@@ -1,6 +1,7 @@
 package com.wj.springioc.my;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -42,11 +43,18 @@ public class MyBeanDefinitionReader {
 	private void loadBeanDefinition(String location) {
 		
 		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+		
+		//builderFactory.setValidating(true);
+		builderFactory.setNamespaceAware(true);
+		
 		try {
 			
 			DocumentBuilder docBuiler = builderFactory.newDocumentBuilder();
 			
-			Document doc = docBuiler.parse(location);
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+			InputStream inputStream = classLoader.getResourceAsStream(location);
+			
+			Document doc = docBuiler.parse(inputStream);
 			
 			registerBeanDefinitions(doc);
 			
