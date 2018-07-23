@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- this is the object that will be proxied by Spring's AOP infrastructure -->
+    <bean id="fooService" class="com.wj.springaop.FooServiceImpl"/>
+
+    <!-- this is the actual advice itself -->
+    <bean id="profiler" class="com.wj.springaop.SimpleProfiler"/>
+
+    <aop:config>
+        <aop:aspect ref="profiler">
+
+            <aop:pointcut id="theExecutionOfSomeFooServiceMethod"
+                expression="execution(* com.wj.springaop.FooService.getFoo())"/>
+
+            <aop:before pointcut-ref="theExecutionOfSomeFooServiceMethod" method="profile"/>
+            <aop:after pointcut-ref="theExecutionOfSomeFooServiceMethod" method="profileAfter"/>
+
+        </aop:aspect>
+    </aop:config>
+
+</beans>
