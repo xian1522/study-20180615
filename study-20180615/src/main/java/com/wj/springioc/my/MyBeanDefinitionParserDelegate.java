@@ -1,5 +1,6 @@
 package com.wj.springioc.my;
 
+import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -18,6 +19,8 @@ public class MyBeanDefinitionParserDelegate {
 	private static final String PROPERTY_ELEMENT = "property";
 	private static final String REF_ATTRIBUTE = "ref";
 	private static final String NAME_ATTRIBUTE = "name";
+	
+	public static final String BEANS_NAMESPACE_URI = "http://www.springframework.org/schema/beans";
 	
 	/**
 	 * 解析并注册BeanDefinition
@@ -61,6 +64,26 @@ public class MyBeanDefinitionParserDelegate {
 				}
 			}
 		}
+	}
+	
+	public String getNamespaceURI(Node node) {
+		return node.getNamespaceURI();
+	}
+	
+	public boolean isDefaultNamespace(Node node) {
+		String namespaceURI = this.getNamespaceURI(node);
+		return !StringUtils.hasLength(namespaceURI) || BEANS_NAMESPACE_URI.equals(namespaceURI); 
+	}
+	/**
+	 * 解析个性化配置
+	* @Description
+	* @user w.j
+	* @date 2018年7月24日 上午12:02:19
+	* @throws
+	 */
+	public void parseCustomElement(Node node) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

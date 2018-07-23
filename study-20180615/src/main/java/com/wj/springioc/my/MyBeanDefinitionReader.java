@@ -91,8 +91,12 @@ public class MyBeanDefinitionReader {
 			Node node = nodeList.item(i);
 			if(node instanceof Element){
 				Element el = (Element) node;
-				MyBeanDefinitionHolder bdHolder =  delegate.parseBeanDefinitionElement(el);
-				this.getRegistry().registBeanDefinition(bdHolder);
+				if(delegate.isDefaultNamespace(node)) {
+					MyBeanDefinitionHolder bdHolder =  delegate.parseBeanDefinitionElement(el);
+					this.getRegistry().registBeanDefinition(bdHolder);
+				}else {
+					delegate.parseCustomElement(node);
+				}
 			}
 			
 		}
