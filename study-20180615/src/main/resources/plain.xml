@@ -7,16 +7,16 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- this is the object that will be proxied by Spring's AOP infrastructure -->
-    <bean id="fooService" class="com.wj.springaop.FooServiceImpl"/>
+    <bean id="fooService" class="com.wj.springioc.aop.FooServiceImpl"/>
 
     <!-- this is the actual advice itself -->
-    <bean id="profiler" class="com.wj.springaop.SimpleProfiler"/>
+    <bean id="profiler" class="com.wj.springioc.aop.SimpleProfiler"/>
 
     <aop:config>
         <aop:aspect ref="profiler">
 
             <aop:pointcut id="theExecutionOfSomeFooServiceMethod"
-                expression="execution(* com.wj.springaop.FooService.getFoo())"/>
+                expression="execution(* com.wj.springioc.aop.FooService.getFoo())"/>
 
             <aop:before pointcut-ref="theExecutionOfSomeFooServiceMethod" method="profile"/>
             <aop:after pointcut-ref="theExecutionOfSomeFooServiceMethod" method="profileAfter"/>

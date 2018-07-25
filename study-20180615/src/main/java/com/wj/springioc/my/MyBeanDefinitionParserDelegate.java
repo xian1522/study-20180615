@@ -82,8 +82,7 @@ public class MyBeanDefinitionParserDelegate {
 	* @throws
 	 */
 	public void parseCustomElement(Node node) {
-		// TODO Auto-generated method stub
-		
+	
 	}
 
 }

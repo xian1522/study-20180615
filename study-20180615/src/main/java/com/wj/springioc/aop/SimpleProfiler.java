@@ -1,4 +1,4 @@
-package com.wj.springaop;
+package com.wj.springioc.aop;
 
 public class SimpleProfiler {
 	

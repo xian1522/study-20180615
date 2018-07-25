@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="petStore" class="com.wj.springioc.PetStoreService">
-        <!-- collaborators and configuration for this bean go here -->
+  <!--  <bean id="petStore" class="com.wj.springioc.PetStoreService">
         <property name="petdao" ref="petDao"/>
     </bean>
     
-    <bean id="petDao" class="com.wj.springioc.PetDao"></bean>
+    <bean id="petDao" class="com.wj.springioc.PetDao"></bean> 
+   --> 
+
+    
+     <!-- this is the object that will be proxied by Spring's AOP infrastructure -->
+    <bean id="fooService" class="com.wj.springioc.aop.FooServiceImpl"/>
+
+    <!-- this is the actual advice itself -->
+    <bean id="profiler" class="com.wj.springioc.aop.SimpleProfiler"/>
+    <aop:config>
+    	<aop:aspect ref="profiler">
+    		<aop:before pointcut-ref="theExecutionOfSomeFooServiceMethod" method="profile"></aop:before>
+    		<aop:after pointcut-ref="theExecutionOfSomeFooServiceMethod" method="profileAfter"/>
+    		<aop:pointcut expression="execution(* com.wj.springioc.aop.FooService.getFoo())" id="theExecutionOfSomeFooServiceMethod"/>
+    	
+    	</aop:aspect>
+    </aop:config>
     
     <!-- more bean definitions go here -->
 
