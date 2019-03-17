@@ -23,7 +23,7 @@ public class LinkedList<E> {
 		if(l==null) {
 			first = newNode;
 		}else {
-			last.next = newNode;
+			l.next = newNode;
 		}
 		size++;
 	}
