@@ -6,12 +6,12 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-  <!--  <bean id="petStore" class="com.wj.springioc.PetStoreService">
+    <bean id="petStore" class="com.wj.springioc.PetStoreService">
         <property name="petdao" ref="petDao"/>
     </bean>
     
     <bean id="petDao" class="com.wj.springioc.PetDao"></bean> 
-   --> 
+   
 
     
      <!-- this is the object that will be proxied by Spring's AOP infrastructure -->
