@@ -1,13 +1,10 @@
 package com.wj.springioc.introspector;
 
-
 public class Peoper {
 	
 	private String name;
 	private String age;
 	private Cat cat;
-	
-	
 	
 	public Cat getCat() {
 		return cat;

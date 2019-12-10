@@ -6,6 +6,10 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.wj.jsonlib.People;
 
 import junit.framework.TestCase;
 
@@ -39,5 +43,5 @@ public class IntrospectorTest extends TestCase{
 			e.printStackTrace();
 		}
 	}
-
+	
 }

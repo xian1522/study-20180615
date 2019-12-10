@@ -4,6 +4,10 @@ public class PetStoreService {
 	
 	private PetDao petdao;
 	
+	public PetStoreService() {
+		System.out.println("init");
+	}
+	
 	public void say(){
 		System.out.println("hello");
 	}

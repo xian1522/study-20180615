@@ -31,8 +31,8 @@ public class ContainerTest extends TestCase{
 	}
 	
 	public void testTemp() {
-		Properties ps = System.getProperties();
-		System.out.println(ps.getProperty("java.class.path"));
+		System.setProperty("spring", "classpath");
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("${spring}:config.xml");
 	}
 	
 }
